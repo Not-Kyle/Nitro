@@ -1,0 +1,2 @@
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Welcome Max Spazware.  ","All")
+--this will be a later script
