@@ -1,4 +1,4 @@
-# Spazware
+# Nitro
 Crosshair x
 NoSlow
 Walkspeed
