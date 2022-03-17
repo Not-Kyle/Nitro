@@ -9,6 +9,6 @@ Tracers
 Esp
 Gui Hotkey
 Chat Spy x
-
+Reset X 
 
 Just a streets script
