@@ -99,39 +99,6 @@ game.StarterGui:SetCore("SendNotification", {
 print("FOR THE CHAT SPY IF YOU SEE D|U OR D|U93X463 (Examples) D|U is DrPoppa and If injected (Citizen Man) It's obv Citzen, then you can also see Cyrus when injected and a couple others (This is for The Streets)")
 print("PRESS Q TO RESET")
 print("PRESS T FOR NOCLIP")
---------------NOCLIP---------------------------
-local Players, RService = game:GetService("Players"), game:GetService("RunService");
-local LocalP, Mouse = Players.LocalPlayer, Players.LocalPlayer:GetMouse();
-local Rm, Index, NIndex, NCall, Caller = getrawmetatable(game), getrawmetatable(game).__index, getrawmetatable(game).__newindex, getrawmetatable(game).__namecall, checkcaller or is_protosmasher_caller
-local NoClip, NoClipKey = false, "t"
-setreadonly(Rm, false)
-
-Rm.__newindex = newcclosure(function(self, Meme, Value)
-    if Caller() then return NIndex(self, Meme, Value) end 
-    if tostring(self) == "HumanoidRootPart" or tostring(self) == "Torso" then 
-        if Meme == "CFrame" and self:IsDescendantOf(LocalP.Character) then 
-            return 
-        end
-    end
-    return NIndex(self, Meme, Value)
-end)
-setreadonly(Rm, true)
-
-RService.Stepped:Connect(function()
-    if NoClip == true and LocalP and LocalP.Character and LocalP.Character:FindFirstChild("Humanoid") then 
-        pcall(function()
-            LocalP.Character.Head.CanCollide = false 
-            LocalP.Character.Torso.CanCollide = false
-        end)
-    end
-end)
-
-Mouse.KeyDown:Connect(function(Key)
-    if Key == NoClipKey then 
-        NoClip = not NoClip
-    end
-end)
-end
 ---------------CROSSHAIR-----------------------
 local function API_Check()
     if Drawing == nil then
