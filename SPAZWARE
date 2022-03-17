@@ -1,2 +1,201 @@
+if game.PlaceId == 455366377 then
 game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Welcome to Spazware","All")
+--THIS SCRIPT WAS MADE BY 703OPPOSITION
+--THIS SCRIPT WAS MADE BY Yac#7093 
+public = false
+publicItalics = true
+enabled = true
+spyOnMyself = false  
+privateProperties = {
+	Color = Color3.fromRGB(255,0,0);
+	Font = Enum.Font.SourceSansBold;
+	TextSize = 21                       
+-- (Change to 16-24) (18 is default)
+}
+---------------------------------------------------------------------------
+local StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local saymsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
+local getmsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
+local instance = (_G.chatSpyInstance or 0) + 1
+_G.chatSpyInstance = instance
+ 
+local function onChatted(p,msg)
+	if _G.chatSpyInstance == instance then
+		if p==player and msg:lower():sub(1,4)=="/spy" then
+			enabled = not enabled
+			wait(0.3)
+			publicItalics.Text = "{SPY BY KYLE}"
+			StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+		elseif enabled and (spyOnMyself==true or p~=player) then
+			msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
+			local hidden = true
+			local conn = getmsg.OnClientEvent:Connect(function(packet,channel)
+				if packet.SpeakerUserId==p.UserId and packet.Message==msg:sub(#msg-#packet.Message+1) and (channel=="All" or (channel=="Team" and public==false and Players[packet.FromSpeaker].Team==player.Team)) then
+					hidden = false
+				end
+			end)
+			wait(1)
+			conn:Disconnect()
+			if hidden and enabled then
+				if public then
+					saymsg:FireServer((publicItalics and '').."{SPY BY KYLE} [".. p.Name .."]: "..msg,"All")
+				else
+					privateProperties.Text = "{SPY LOL SPED} [".. p.Name .."]: "..msg
+					StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+				end
+			end
+		end
+	end
+end
+ 
+for _,p in ipairs(Players:GetPlayers()) do
+	p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+end
+Players.PlayerAdded:Connect(function(p)
+	p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+end)
+privateProperties.Text = "WELCOME TO SPAZWARE"
+StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+local chatFrame = player.PlayerGui.Chat.Frame
+chatFrame.ChatChannelParentFrame.Visible = true
+chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
+wait(3)
+local function callback(Text)
+end
+ 
+ local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Notes from Kyle";
+    Text = "I ONLY POST ON GITHUB SO ANY WHERE ELSE MY SCRIPT IS IT'S NOT ME";
+    Duration = "9";
+    Callback = NotificationBindable;
+})
+print("hii -kyle")
+----------------RESET--------------------
+function onKeyPress(actionName, userInputState, inputObject)
+   if userInputState == Enum.UserInputState.Begin then
+       game.Players.LocalPlayer.Character:BreakJoints()
+   end
+end
+game.ContextActionService:BindAction("keyPress", onKeyPress, false, Enum.KeyCode.Q)
+wait(3)
+local function callback(Text)
+end
+ 
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Notes from Kyle";
+    Text = "PRESS F9 TO SEE MORE COMMANDS";
+    Duration = "5";
+    Callback = NotificationBindable;
+})
 
+print("FOR THE CHAT SPY IF YOU SEE D|U OR D|U93X463 (Examples) D|U is DrPoppa and If injected (Citizen Man) It's obv Citzen, then you can also see Cyrus when injected and a couple others (This is for The Streets)")
+print("PRESS Q TO RESET")
+print("PRESS T FOR NOCLIP")
+--------------NOCLIP---------------------------
+local Players, RService = game:GetService("Players"), game:GetService("RunService");
+local LocalP, Mouse = Players.LocalPlayer, Players.LocalPlayer:GetMouse();
+local Rm, Index, NIndex, NCall, Caller = getrawmetatable(game), getrawmetatable(game).__index, getrawmetatable(game).__newindex, getrawmetatable(game).__namecall, checkcaller or is_protosmasher_caller
+local NoClip, NoClipKey = false, "t"
+setreadonly(Rm, false)
+
+Rm.__newindex = newcclosure(function(self, Meme, Value)
+    if Caller() then return NIndex(self, Meme, Value) end 
+    if tostring(self) == "HumanoidRootPart" or tostring(self) == "Torso" then 
+        if Meme == "CFrame" and self:IsDescendantOf(LocalP.Character) then 
+            return 
+        end
+    end
+    return NIndex(self, Meme, Value)
+end)
+setreadonly(Rm, true)
+
+RService.Stepped:Connect(function()
+    if NoClip == true and LocalP and LocalP.Character and LocalP.Character:FindFirstChild("Humanoid") then 
+        pcall(function()
+            LocalP.Character.Head.CanCollide = false 
+            LocalP.Character.Torso.CanCollide = false
+        end)
+    end
+end)
+
+Mouse.KeyDown:Connect(function(Key)
+    if Key == NoClipKey then 
+        NoClip = not NoClip
+    end
+end)
+end
+---------------CROSSHAIR-----------------------
+local function API_Check()
+    if Drawing == nil then
+        return "No"
+    else
+        return "Yes"
+    end
+end
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Camera = workspace.CurrentCamera
+
+local Typing = false
+
+local ViewportSize_ = Camera.ViewportSize / 2
+local Axis_X, Axis_Y = ViewportSize_.X, ViewportSize_.Y
+
+local HorizontalLine = Drawing.new("Line")
+local VerticalLine = Drawing.new("Line")
+
+_G.SendNotifications = true   
+_G.DefaultSettings = false
+_G.ToMouse = false
+
+_G.CrosshairVisible = true   
+_G.CrosshairSize = 20   
+_G.CrosshairThickness = 1   
+_G.CrosshairColor = Color3.fromRGB(255, 0, 0) 
+_G.CrosshairTransparency = 1   
+
+RunService.RenderStepped:Connect(function()
+    local Real_Size = _G.CrosshairSize / 2
+
+    HorizontalLine.Color = _G.CrosshairColor
+    HorizontalLine.Thickness = _G.CrosshairThickness
+    HorizontalLine.Visible = _G.CrosshairVisible
+    HorizontalLine.Transparency = _G.CrosshairTransparency
+    
+    VerticalLine.Color = _G.CrosshairColor
+    VerticalLine.Thickness = _G.CrosshairThickness
+    VerticalLine.Visible = _G.CrosshairVisible
+    VerticalLine.Transparency = _G.CrosshairTransparency
+    
+    if _G.ToMouse == true then
+        HorizontalLine.From = Vector2.new(UserInputService:GetMouseLocation().X - Real_Size, UserInputService:GetMouseLocation().Y)
+        HorizontalLine.To = Vector2.new(UserInputService:GetMouseLocation().X + Real_Size, UserInputService:GetMouseLocation().Y)
+        
+        VerticalLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y - Real_Size)
+        VerticalLine.To = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y + Real_Size)
+    elseif _G.ToMouse == false then
+        HorizontalLine.From = Vector2.new(Axis_X - Real_Size, Axis_Y)
+        HorizontalLine.To = Vector2.new(Axis_X + Real_Size, Axis_Y)
+    
+        VerticalLine.From = Vector2.new(Axis_X, Axis_Y - Real_Size)
+        VerticalLine.To = Vector2.new(Axis_X, Axis_Y + Real_Size)
+    end
+end)
+
+if _G.DefaultSettings == true then
+    _G.CrosshairVisible = true
+    _G.CrosshairSize = 25
+    _G.CrosshairThickness = 2
+    _G.CrosshairColor = Color3.fromRGB(40, 90, 255)
+    _G.CrosshairTransparency = 0.15
+end
