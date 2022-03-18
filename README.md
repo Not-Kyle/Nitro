@@ -3,12 +3,12 @@ Crosshair x
 NoSlow
 Walkspeed
 NoSit
-NoClip 
-ItemEsp
+NoClip x
+ItemEsp x
 Tracers
 Esp
-Gui Hotkey
+Gui Hotkey x
 Chat Spy x
-Reset X 
+
 
 Just a streets script
