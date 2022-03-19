@@ -1,5 +1,5 @@
 if game.PlaceId == 455366377 then
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Welcome to Spazware","All")
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Welcome to Nitro","All")
 --THIS SCRIPT WAS MADE BY 703OPPOSITION
 --THIS SCRIPT WAS MADE BY Yac#7093 
 public = false
