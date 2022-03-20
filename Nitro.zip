@@ -1,7 +1,45 @@
-if game.PlaceId == 455366377 then
-game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer("Welcome to Nitro","All")
+if game.PlaceId == 455366377 or game.PlaceId == 4669040 then
 --THIS SCRIPT WAS MADE BY 703OPPOSITION
---THIS SCRIPT WAS MADE BY sevenspacedgods#7093
+--THIS SCRIPT WAS MADE BY Yac#7093
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Nitro = Instance.new("TextButton")
+local ItemEsp_Box = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.BorderColor3 = Color3.new(0, 0, 0)
+Frame.BorderSizePixel = 3
+Frame.Position = UDim2.new(0.350, 100, 0.375, 0)
+Frame.Size = UDim2.new(0, 423, 0, 298)
+
+Nitro.Name = "Nitro"
+Nitro.Parent = Frame
+Nitro.Active = false
+Nitro.BackgroundColor3 = Color3.new(0, 0, 0)
+Nitro.Position = UDim2.new(0.136540592, 0, 0.0240489263, 0)
+Nitro.Size = UDim2.new(0, 0.009, 0, 0)
+Nitro.AutoButtonColor = false
+Nitro.Style = Enum.ButtonStyle.RobloxRoundButton
+Nitro.Font = Enum.Font.Code
+Nitro.Text = "Nitro"
+Nitro.TextColor3 = Color3.new(255, 255, 255)
+Nitro.TextSize = 21
+
+ItemEsp_Box.Name = "ItemEsp_Box"
+ItemEsp_Box.Parent = Frame
+ItemEsp_Box.BackgroundColor3 = Color3.new(1, 1, 1)
+ItemEsp_Box.BorderColor3 = Color3.new(255, 255, 255)
+ItemEsp_Box.BorderSizePixel = 2
+ItemEsp_Box.Position = UDim2.new(0.0518558025, 0, 0.819612324, 0)
+ItemEsp_Box.Size = UDim2.new(0, 78, 0, 29)
+ItemEsp_Box.Font = Enum.Font.SourceSans
+ItemEsp_Box.Text = "Item Esp"
+ItemEsp_Box.TextColor3 = Color3.new(0, 0, 0)
+ItemEsp_Box.TextSize = 14
+
 public = false
 publicItalics = true
 enabled = true
@@ -56,7 +94,7 @@ end
 Players.PlayerAdded:Connect(function(p)
 	p.Chatted:Connect(function(msg) onChatted(p,msg) end)
 end)
-privateProperties.Text = "WELCOME TO SPAZWARE"
+privateProperties.Text = "WELCOME TO NITRO"
 StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
 local chatFrame = player.PlayerGui.Chat.Frame
 chatFrame.ChatChannelParentFrame.Visible = true
@@ -74,15 +112,21 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = "9";
     Callback = NotificationBindable;
 })
-print("hii -kyle")
-----------------RESET--------------------
-function onKeyPress(actionName, userInputState, inputObject)
-   if userInputState == Enum.UserInputState.Begin then
-       game.Players.LocalPlayer.Character:BreakJoints()
-   end
+wait (3)
+local function callback(Text)
 end
-game.ContextActionService:BindAction("keyPress", onKeyPress, false, Enum.KeyCode.Q)
-wait(3)
+ 
+ local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Notes from Kyle";
+    Text = "PRESS RIGHT SHIFT FOR GUI";
+    Duration = "9";
+    Callback = NotificationBindable;
+})
+
+print("hii -kyle")
 local function callback(Text)
 end
  
@@ -97,8 +141,7 @@ game.StarterGui:SetCore("SendNotification", {
 })
 
 print("FOR THE CHAT SPY IF YOU SEE D|U OR D|U93X463 (Examples) D|U is DrPoppa and If injected (Citizen Man) It's obv Citzen, then you can also see Cyrus when injected and a couple others (This is for The Streets)")
-print("PRESS Q TO RESET")
-print("PRESS T FOR NOCLIP")
+print("Press Q for Reset")
 ---------------CROSSHAIR-----------------------
 local function API_Check()
     if Drawing == nil then
@@ -165,4 +208,148 @@ if _G.DefaultSettings == true then
     _G.CrosshairThickness = 2
     _G.CrosshairColor = Color3.fromRGB(40, 90, 255)
     _G.CrosshairTransparency = 0.15
+end
+-----------------ITEMESP-------------------------------
+ItemEsp_Box.MouseButton1Down:Connect(function()
+function esp(instance)
+    local types = ""
+    local EspText = ""
+    local EspFontSize = "Size14" -- Uzi has larger text
+    local EspColor = BrickColor.new("Bright green") -- Temporary placeholder
+    local EspPart = instance
+    for i,v in pairs(instance:GetDescendants()) do
+        if v:IsA("MeshPart") and v.Name == "Blade" and string.find(tostring(v.MeshId), tostring(12177251)) then
+            types = "katana"
+            EspText = "Katana"
+            EspColor = BrickColor.new("Bright blue")
+            EspPart = v:FindFirstAncestorWhichIsA("BasePart")
+        elseif v:IsA("MeshPart") and v.MeshId == "rbxassetid://511726060" then
+            types = "cash"
+            EspText = "Cash"
+            EspColor = BrickColor.new("Bright blue")
+            EspPart = v
+        elseif v:IsA("Sound") and v.Name == "Fire" and string.find(tostring(v.SoundId), tostring(328964620)) then
+            types = "uzi"
+            EspText = "Uzi"
+            EspFontSize = "Size18"
+            EspColor = BrickColor.new("Bright blue")
+            EspPart = v:FindFirstAncestorWhichIsA("BasePart")
+        elseif v:IsA("Sound") and v.Name == "Fire" and string.find(tostring(v.SoundId), tostring(142383762)) then
+            types = "shotty"
+            EspText = "Shotty"
+            EspColor = BrickColor.new("Bright blue")
+            EspPart = v:FindFirstAncestorWhichIsA("BasePart")
+        end
+    end
+
+
+    local TracerPart = Instance.new("Part")
+    TracerPart.Parent = EspPart
+    TracerPart.Name = "TracerPart"
+    TracerPart.CFrame = EspPart.CFrame
+    TracerPart.Size = Vector3.new(0.2,0.2,0.2)
+    TracerPart.Anchored = true
+    TracerPart.Transparency = 1
+
+    local billgui = Instance.new('BillboardGui', TracerPart)
+    local textlab = Instance.new('TextLabel', billgui)
+
+    billgui.Name = "ESPBillboard"
+    billgui.Adornee  = TracerPart
+    billgui.AlwaysOnTop = true
+    billgui.ExtentsOffset = Vector3.new(0, 1, 0)
+    billgui.Size = UDim2.new(0, 5, 0, 5)
+	
+    textlab.Name = "ESPLabel"
+    textlab.BackgroundColor3 = Color3.new(255, 255, 255)
+    textlab.BackgroundTransparency = 1
+    textlab.BorderSizePixel = 0
+    textlab.Position = UDim2.new(0, 0, 0, -40)
+    textlab.Size = UDim2.new(1, 0, 10, 0)
+    textlab.Visible = true
+    textlab.ZIndex = 10
+    textlab.Font = 'ArialBold'
+    textlab.FontSize = EspFontSize
+    textlab.Text = EspText
+    textlab.TextColor = EspColor
+    textlab.TextStrokeColor3 = Color3.fromRGB(0,0,0)
+    textlab.TextStrokeTransparency = 0.6
+end
+
+for i,v in pairs(game.Workspace:GetChildren()) do
+    if v.Name == "RandomSpawner" then
+        esp(v)
+    end
+end
+
+for i,v in pairs(game.Workspace:GetChildren()) do
+    if v.Name == "RandomSpawner" then
+        if v:FindFirstChild("Model") then
+            v.Model.ChildAdded:Connect(function(child)
+                esp(child)
+            end)
+        end
+        v.ChildAdded:Connect(function(child)
+            esp(child)
+        end)
+    end
+end
+
+game.Workspace.ChildAdded:Connect(function(child)
+    if child.Name == "RandomSpawner" then
+        repeat wait() until child.Model
+        esp(child)
+    end
+end)
+end)
+--------------------NOCLIP------------------------------
+local Players, RService = game:GetService("Players"), game:GetService("RunService");
+local LocalP, Mouse = Players.LocalPlayer, Players.LocalPlayer:GetMouse();
+local Rm, Index, NIndex, NCall, Caller = getrawmetatable(game), getrawmetatable(game).__index, getrawmetatable(game).__newindex, getrawmetatable(game).__namecall, checkcaller or is_protosmasher_caller
+local NoClip, NoClipKey = false, "t"
+setreadonly(Rm, false)
+
+Rm.__newindex = newcclosure(function(self, Meme, Value)
+    if Caller() then return NIndex(self, Meme, Value) end 
+    if tostring(self) == "HumanoidRootPart" or tostring(self) == "Torso" then 
+        if Meme == "CFrame" and self:IsDescendantOf(LocalP.Character) then 
+            return 
+        end
+    end
+    return NIndex(self, Meme, Value)
+end)
+setreadonly(Rm, true)
+
+RService.Stepped:Connect(function()
+    if NoClip == true and LocalP and LocalP.Character and LocalP.Character:FindFirstChild("Humanoid") then 
+        pcall(function()
+            LocalP.Character.Head.CanCollide = false 
+            LocalP.Character.Torso.CanCollide = false
+        end)
+    end
+end)
+
+Mouse.KeyDown:Connect(function(Key)
+    if Key == NoClipKey then 
+        NoClip = not NoClip
+    end
+end)
+---------------GUI-VISIBLE-----------------
+local toggle = true
+
+function onKeyPress(actionName, userInputState, inputObject)
+    if userInputState == Enum.UserInputState.Begin then
+        if toggle == false then
+             toggle = true
+              Frame.Visible = true
+        else
+            toggle = false
+            Frame.Visible = false
+        end
+    end
+end
+
+
+game.ContextActionService:BindAction("keyPress", onKeyPress, false, Enum.KeyCode.R)
+
 end
