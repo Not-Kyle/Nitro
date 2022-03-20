@@ -1,4 +1,4 @@
-if game.PlaceId == 455366377 or game.PlaceId == 4669040 then
+if game.PlaceId == 455366377 or game.PlaceId == 4669040 then --WILL BE TAKING OUT 4669040 BECAUSE THIS ISNT FOR PRISON
 --THIS SCRIPT WAS MADE BY 703OPPOSITION
 --THIS SCRIPT WAS MADE BY Yac#7093
 local ScreenGui = Instance.new("ScreenGui")
