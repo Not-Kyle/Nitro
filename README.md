@@ -2,7 +2,6 @@
 Crosshair x
 NoSlow
 Walkspeed
-NoSit
 NoClip x
 ItemEsp x
 Tracers
