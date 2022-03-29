@@ -142,6 +142,7 @@ game.StarterGui:SetCore("SendNotification", {
 
 print("FOR THE CHAT SPY IF YOU SEE D|U OR D|U93X463 (Examples) D|U is DrPoppa and If injected (Citizen Man) It's obv Citzen, then you can also see Cyrus when injected and a couple others (This is for The Streets)")
 print("Press T for Noclip")
+print("Press R for Gui Open/Close")
 ---------------CROSSHAIR-----------------------
 local function API_Check()
     if Drawing == nil then
